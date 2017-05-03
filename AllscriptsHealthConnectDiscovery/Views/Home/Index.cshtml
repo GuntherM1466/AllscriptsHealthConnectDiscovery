@@ -4,14 +4,8 @@
 
 <script>
     $(function () {
-        $("#lnkNewPatient").click(function (e) {
+        $("#lnkConnect").click(function (e) {
             window.location.href = $('#txtAllscriptsEnv').val() + '/discover?appID=' + $('#txtAppID').val() + '&redirectURI=' + $('#txtRedirectURI').val();
-        });
-    });
-
-    $(function () {
-        $("#lnkExistingPatient").click(function (e) {
-            window.location.href = $('#txtAllscriptsEnv').val() + '/discover?appID=' + $('#txtAppID').val() + '&redirectURI=' + $('#txtRedirectURI').val() + '&type=existingpatient';
         });
     });
 </script>
@@ -37,7 +31,7 @@
                 { 
                     new SelectListItem() { Text = "Production", Value = "https://open.allscripts.com/patient" }, 
                     new SelectListItem() { Text = "Stage", Value = "http://adpstage.southcentralus.cloudapp.azure.com/patient" }, 
-                    new SelectListItem() { Text = "Dev", Value = "http://localhost:12955" }
+                    new SelectListItem() { Text = "Dev", Value = "http://192.168.33.10/PatientPortal" }
                 }, 
                 new { @class = "col-md-2 control-label" })
         </div>
@@ -46,14 +40,7 @@
 <div style="clear:both;" />
 <div>
     <div style="width: 50%; padding: 10px; float:left">
-        <h1>New Patient</h1>
-        <p class="lead">Demo of discovery process and "in app" patient invitation processing</p>
-        <p><a id="lnkNewPatient" class="btn btn-default" href="#">Register with Allscripts Health Connect &raquo;</a></p>
-
-    </div>
-    <div style="width: 50%; padding: 10px; float:left">
-        <h1>Existing Patient</h1>
-        <p class="lead">Demo of discovery process and "in app" patient invitation processing for patients with existing credentials</p>
-        <p><a id="lnkExistingPatient" class="btn btn-default" href="#">Login with Allscripts Health Connect &raquo;</a></p>
-    </div>
+        <h1>Connect with Allscripts</h1>
+        <p class="lead">Demo of discovery process </p>
+        <p><a id="lnkConnect" class="btn btn-default" href="#">Connect with Allscripts &raquo;</a></p>
 </div>

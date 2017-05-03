@@ -20,7 +20,7 @@ namespace TestPatientApp.Controllers
             var serializedModel = Encoding.Unicode.GetString(Convert.FromBase64String(HttpUtility.UrlDecode(discovery)));
             
             //here's the model object to work with
-            var model = JsonConvert.DeserializeObject<Models.DiscoveryModel>(serializedModel);
+            var model = JsonConvert.DeserializeObject<List<Models.DiscoveryModel>>(serializedModel);
 
             return Content(serializedModel);
         }

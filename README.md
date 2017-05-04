@@ -6,20 +6,33 @@ The discovery process returns a JSON object.
 
 For Example
 ``` javascript
-[
-	{
-	authorization_endpoint: "https://tw171.open.allscripts.com/authorization/connect/authorize",
-	issuer: "https://tw171.open.allscripts.com",
-	token_endpoint: "https://tw171.open.allscripts.com/authorization/connect/token",
-	token_endpoint_auth_types_supported: null,
-	userinfo_endpoint: "https://tw171.open.allscripts.com/authorization/connect/userinfo",
-	check_id_endpoint: "",
-	registration_endpoint: null,
-	refresh_endpoint: "https://tw171.open.allscripts.com/authorization/connect/refresh",
-	fhir_endpoint: "https://tw171.open.allscripts.com/fhir"
-	}
-]
+[{
+	"authorization_endpoint": "http//pro171.fmh.open.allscripts.com/authorization/connect/authorize",
+	"patient_authorization_endpoint": "https://muauthentication-uat.followmyhealth.com/api/authorize?acr_values=FhirApiID:e9a5eab3-b766-4b86-a0d2-8634311fce2c",
+	"issuer": "http://pro171.open.allscripts.com",
+	"token_endpoint": "http//pro171.fmh.open.allscripts.com/authorization/connect/token",
+	"patient_token_endpoint": "https://muauthentication-uat.followmyhealth.com/api/access",
+	"token_endpoint_auth_types_supported": null,
+	"userinfo_endpoint": "https://pro171.open.allscripts.com/authorization/connect/userinfo",
+	"check_id_endpoint": "",
+	"registration_endpoint": "",
+	"refresh_endpoint": "https://pro171.open.allscripts.com/authorization/connect/refresh",
+	"fhir_endpoint": "https://pro171.open.allscripts.com/FHIR",
+	"org_name": "Azure FHIR Sandbox Professional  17.1"
+}]```
+
+The data is returned as a post, because it can be very long (too long to send as a query string parameter).
+The data is retuned in the Form parameter html_encoded_json_disocvery_data.
+The JSon is base64 endcoded, then URL encoded
+
+e.g.
+
+``` javascript
+html_encoded_json_disocvery_data=WwB7ACIAYQB1AHQAaABvAHIAaQB6AGEAdABpAG8AbgBfAGUAbgBkAHAAbwBpAG4AdAAiADoAIgBoAHQAdABwAC8ALwBwAHIAbwAxADcAMQAuAGYAbQBoAC4AbwBwAGUAbgAuAGEAbABsAHMAYwByAGkAcAB0AHMALgBjAG8AbQAvAGEAdQB0AGgAbwByAGkAegBhAHQAaQBvAG4ALwBjAG8AbgBuAGUAYwB0AC8AYQB1AHQAaABvAHIAaQB6AGUAIgAsACIAcABhAHQAaQBlAG4AdABfAGEAdQB0AGgAbwByAGkAegBhAHQAaQBvAG4AXwBlAG4AZABwAG8AaQBuAHQAIgA6ACIAaAB0AHQAcABzADoALwAvAG0AdQBhAHUAdABoAGUAbgB0AGkAYwBhAHQAaQBvAG4ALQB1AGEAdAAuAGYAbwBsAGwAbwB3AG0AeQBoAGUAYQBsAHQAaAAuAGMAbwBtAC8AYQBwAGkALwBhAHUAdABoAG8AcgBpAHoAZQA%252fAGEAYwByAF8AdgBhAGwAdQBlAHMAPQBGAGgAaQByAEEAcABpAEkARAA6AGUAOQBhADUAZQBhAGIAMwAtAGIANwA2ADYALQA0AGIAOAA2AC0AYQAwAGQAMgAtADgANgAzADQAMwAxADEAZgBjAGUAMgBjACIALAAiAGkAcwBzAHUAZQByACIAOgAiAGgAdAB0AHAAOgAvAC8AcAByAG8AMQA3ADEALgBvAHAAZQBuAC4AYQBsAGwAcwBjAHIAaQBwAHQAcwAuAGMAbwBtACIALAAiAHQAbwBrAGUAbgBfAGUAbgBkAHAAbwBpAG4AdAAiADoAIgBoAHQAdABwAC8ALwBwAHIAbwAxADcAMQAuAGYAbQBoAC4AbwBwAGUAbgAuAGEAbABsAHMAYwByAGkAcAB0AHMALgBjAG8AbQAvAGEAdQB0AGgAbwByAGkAegBhAHQAaQBvAG4ALwBjAG8AbgBuAGUAYwB0AC8AdABvAGsAZQBuACIALAAiAHAAYQB0AGkAZQBuAHQAXwB0AG8AawBlAG4AXwBlAG4AZABwAG8AaQBuAHQAIgA6ACIAaAB0AHQAcABzADoALwAvAG0AdQBhAHUAdABoAGUAbgB0AGkAYwBhAHQAaQBvAG4ALQB1AGEAdAAuAGYAbwBsAGwAbwB3AG0AeQBoAGUAYQBsAHQAaAAuAGMAbwBtAC8AYQBwAGkALwBhAGMAYwBlAHMAcwAiACwAIgB0AG8AawBlAG4AXwBlAG4AZABwAG8AaQBuAHQAXwBhAHUAdABoAF8AdAB5AHAAZQBzAF8AcwB1AHAAcABvAHIAdABlAGQAIgA6AG4AdQBsAGwALAAiAHUAcwBlAHIAaQBuAGYAbwBfAGUAbgBkAHAAbwBpAG4AdAAiADoAIgBoAHQAdABwAHMAOgAvAC8AcAByAG8AMQA3ADEALgBvAHAAZQBuAC4AYQBsAGwAcwBjAHIAaQBwAHQAcwAuAGMAbwBtAC8AYQB1AHQAaABvAHIAaQB6AGEAdABpAG8AbgAvAGMAbwBuAG4AZQBjAHQALwB1AHMAZQByAGkAbgBmAG8AIgAsACIAYwBoAGUAYwBrAF8AaQBkAF8AZQBuAGQAcABvAGkAbgB0ACIAOgAiACIALAAiAHIAZQBnAGkAcwB0AHIAYQB0AGkAbwBuAF8AZQBuAGQAcABvAGkAbgB0ACIAOgAiACIALAAiAHIAZQBmAHIAZQBzAGgAXwBlAG4AZABwAG8AaQBuAHQAIgA6ACIAaAB0AHQAcABzADoALwAvAHAAcgBvADEANwAxAC4AbwBwAGUAbgAuAGEAbABsAHMAYwByAGkAcAB0AHMALgBjAG8AbQAvAGEAdQB0AGgAbwByAGkAegBhAHQAaQBvAG4ALwBjAG8AbgBuAGUAYwB0AC8AcgBlAGYAcgBlAHMAaAAiACwAIgBmAGgAaQByAF8AZQBuAGQAcABvAGkAbgB0ACIAOgAiAGgAdAB0AHAAcwA6AC8ALwBwAHIAbwAxADcAMQAuAG8AcABlAG4ALgBhAGwAbABzAGMAcgBpAHAAdABzAC4AYwBvAG0ALwBGAEgASQBSACIALAAiAG8AcgBnAF8AbgBhAG0AZQAiADoAIgBBAHoAdQByAGUAIABGAEgASQBSACAAUwBhAG4AZABiAG8AeAAgAFAAcgBvAGYAZQBzAHMAaQBvAG4AYQBsACAAIAAxADcALgAxACIAfQBdAA%253d%253d
 ```
+
+The above data corresponds to the Json object in this example.
+
 
 ## Connecting to the Allscripts Health Connect Discovery Process
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using TestPatientApp.Models;
 
 namespace TestPatientApp.Controllers
 {
@@ -15,10 +16,11 @@ namespace TestPatientApp.Controllers
             return View();
         }
 
-        public ActionResult Callback(string discovery)
+        [HttpPost]
+        public ActionResult Callback(DiscoveryData discoveryData)
         {
-            var serializedModel = Encoding.Unicode.GetString(Convert.FromBase64String(HttpUtility.UrlDecode(discovery)));
-            
+            var serializedModel = Encoding.Unicode.GetString(Convert.FromBase64String(HttpUtility.UrlDecode(discoveryData.html_encoded_json_disocvery_data)));
+
             //here's the model object to work with
             var model = JsonConvert.DeserializeObject<List<Models.DiscoveryModel>>(serializedModel);
 

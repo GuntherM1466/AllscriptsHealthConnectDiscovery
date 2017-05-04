@@ -33,6 +33,7 @@ html_encoded_json_disocvery_data=WwB7ACIAYQB1AHQAaABvAHIAaQB6AGEAdABpAG8AbgBfAGU
 
 The above data corresponds to the Json object in this example.
 
+The difference between the authorization_endpoint and the patient_authorization_endpoint is that the patient_authorization_endpoint will take you to a Login screen where patients can log in, while authorization_endpoint that can be used by Providers as well as Patients
 
 ## Connecting to the Allscripts Health Connect Discovery Process
 
